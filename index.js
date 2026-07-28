@@ -13,6 +13,10 @@ const port = 3000;
 app.use(morgan("combined")); // Ghi log request ra Terminal
 app.use(express.static("public")); // Cấp quyền truy cập công khai cho public
 
+// Middleware đọc dữ liệu từ Form HTML gửi lên
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // ===== Cấu hình Template Engine Handlebars =====
 app.engine("hbs", engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");

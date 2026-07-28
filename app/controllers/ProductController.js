@@ -11,7 +11,21 @@ class ProductController {
       .catch((error) => next(error));
   }
 
-  // [GET] /products/:slug - Chi tiết 1 sản phẩm
+  // [GET] /products/create - Hiển thị Form thêm sản phẩm
+  create(req, res) {
+    res.render("product-create");
+  }
+
+  // [POST] /products/store - Lưu sản phẩm mới vào Database
+  store(req, res, next) {
+    const product = new Product(req.body);
+    product
+      .save()
+      .then(() => res.redirect("/products"))
+      .catch((error) => next(error));
+  }
+
+  // [GET] /products/:slug - Chi tiết 1 sản phẩm (luôn để dưới cùng)
   show(req, res, next) {
     Product.findOne({ slug: req.params.slug })
       .lean()
