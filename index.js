@@ -1,16 +1,26 @@
 // index.js - File khởi tạo server chính của dự án Coffee Shop
 
 const express = require("express");
-const morgan = require("morgan"); // Ghi log các request gửi lên server
+const morgan = require("morgan");
+const { engine } = require("express-handlebars");
 
 const app = express();
 const port = 3000;
 
-// Tích hợp morgan để log mọi request (GET, POST...) ra Terminal
-app.use(morgan("combined"));
+// ===== Middleware =====
+app.use(morgan("combined")); // Ghi log request ra Terminal
 
-app.get("//", (req, res) => {
-  res.send("Website bán hạt cà phê - Đồ án nhóm");
+// Cấp quyền truy cập công khai cho thư mục public (ảnh, CSS)
+app.use(express.static("public"));
+
+// ===== Cấu hình Template Engine Handlebars =====
+app.engine("hbs", engine({ extname: ".hbs" }));
+app.set("view engine", "hbs");
+app.set("views", "./views"); // Thư mục chứa giao diện
+
+// ===== Route tạm thời (sẽ chuyển sang MVC ở buổi sau) =====
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
 app.listen(port, () => {

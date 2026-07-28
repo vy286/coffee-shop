@@ -1,0 +1,19 @@
+body {
+  background-color: #f5e9da;
+  color: #2c1810;
+}
+
+.navbar {
+  background-color: #6f4e37 !important;
+}
+
+.btn-primary {
+  background-color: #6f4e37;
+  border-color: #6f4e37;
+}
+.btn-primary:hover {
+  background-color: rgb(30.1559177888%, 21.1906449327%, 14.9421214269%);
+  border-color: rgb(30.1559177888%, 21.1906449327%, 14.9421214269%);
+}
+
+/*# sourceMappingURL=app.css.map */

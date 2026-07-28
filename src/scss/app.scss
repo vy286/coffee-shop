@@ -1,0 +1,27 @@
+// app.scss - File điều khiển toàn bộ style của website Coffee Shop
+@use "sass:color";
+
+// ===== Biến màu sắc chủ đạo =====
+$color-primary: #6f4e37; // Nâu cà phê đậm - dùng cho nút, tiêu đề
+$color-secondary: #a9746e; // Nâu nhạt - điểm nhấn
+$color-cream: #f5e9da; // Kem - nền trang
+$color-dark: #2c1810; // Nâu đen - chữ chính
+
+body {
+  background-color: $color-cream;
+  color: $color-dark;
+}
+
+.navbar {
+  background-color: $color-primary !important;
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  border-color: $color-primary;
+
+  &:hover {
+    background-color: color.adjust($color-primary, $lightness: -10%);
+    border-color: color.adjust($color-primary, $lightness: -10%);
+  }
+}
