@@ -22,7 +22,20 @@ app.set("views", "./views"); // Thư mục chứa giao diện
 app.get("/", (req, res) => {
   res.render("home");
 });
+// Route hiển thị trang Sản phẩm
+app.get("/products", (req, res) => {
+  res.render("products");
+});
 
+// Route hiển thị trang Giới thiệu
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
+// Route hiển thị trang Liên hệ
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
 app.listen(port, () => {
   console.log(`Server đang chạy tại http://localhost:${port}`);
 });
