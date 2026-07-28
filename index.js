@@ -9,33 +9,17 @@ const port = 3000;
 
 // ===== Middleware =====
 app.use(morgan("combined")); // Ghi log request ra Terminal
-
-// Cấp quyền truy cập công khai cho thư mục public (ảnh, CSS)
-app.use(express.static("public"));
+app.use(express.static("public")); // Cấp quyền truy cập công khai cho public
 
 // ===== Cấu hình Template Engine Handlebars =====
 app.engine("hbs", engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
-app.set("views", "./views"); // Thư mục chứa giao diện
+app.set("views", "./views");
 
-// ===== Route tạm thời (sẽ chuyển sang MVC ở buổi sau) =====
-app.get("/", (req, res) => {
-  res.render("home");
-});
-// Route hiển thị trang Sản phẩm
-app.get("/products", (req, res) => {
-  res.render("products");
-});
+// ===== Nạp hệ thống Routes =====
+const route = require("./routes");
+route(app);
 
-// Route hiển thị trang Giới thiệu
-app.get("/about", (req, res) => {
-  res.render("about");
-});
-
-// Route hiển thị trang Liên hệ
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
 app.listen(port, () => {
   console.log(`Server đang chạy tại http://localhost:${port}`);
 });
