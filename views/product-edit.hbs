@@ -1,0 +1,47 @@
+<div class="mt-4">
+    <h2 class="mb-4" style="color: #6f4e37;">Cập nhật sản phẩm</h2>
+
+    <form method="POST" action="/products/{{product._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">Tên sản phẩm</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{product.name}}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Mô tả</label>
+            <textarea class="form-control" id="description" name="description" rows="3">{{product.description}}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Link hình ảnh</label>
+            <input type="text" class="form-control" id="image" name="image" value="{{product.image}}">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="price">Giá (đ)</label>
+                <input type="number" class="form-control" id="price" name="price" value="{{product.price}}">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="origin">Xuất xứ</label>
+                <input type="text" class="form-control" id="origin" name="origin" value="{{product.origin}}">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="roastLevel">Mức độ rang</label>
+                <select class="form-control" id="roastLevel" name="roastLevel">
+                    <option value="Rang nhạt" {{#eq product.roastLevel "Rang nhạt"}}selected{{/eq}}>Rang nhạt</option>
+                    <option value="Rang vừa" {{#eq product.roastLevel "Rang vừa"}}selected{{/eq}}>Rang vừa</option>
+                    <option value="Rang đậm" {{#eq product.roastLevel "Rang đậm"}}selected{{/eq}}>Rang đậm</option>
+                    <option value="Rang mộc" {{#eq product.roastLevel "Rang mộc"}}selected{{/eq}}>Rang mộc</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="slug">Slug</label>
+            <input type="text" class="form-control" id="slug" name="slug" value="{{product.slug}}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Lưu thay đổi</button>
+    </form>
+</div>
