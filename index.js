@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const { engine } = require("express-handlebars");
 
 const app = express();
+const db = require("./config/db");
+db.connect();
 const port = 3000;
 
 // ===== Middleware =====
