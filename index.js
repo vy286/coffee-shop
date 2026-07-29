@@ -1,3 +1,4 @@
+require("dotenv").config();
 // index.js - File khởi tạo server chính của dự án Coffee Shop
 
 const express = require("express");
@@ -8,7 +9,7 @@ const app = express();
 const db = require("./config/db");
 const methodOverride = require("method-override");
 db.connect();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // ===== Middleware =====
 app.use(morgan("combined")); // Ghi log request ra Terminal
