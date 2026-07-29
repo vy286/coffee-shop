@@ -1,12 +1,29 @@
 const Product = require("../models/Product");
 
 class ProductController {
-  // [GET] /products
+  // [GET] /products - Danh sách sản phẩm, có thể kèm tìm kiếm/lọc
   index(req, res, next) {
-    Product.find({})
+    const keyword = req.query.q || "";
+    const roastLevel = req.query.roastLevel || "";
+
+    // Xây dựng điều kiện truy vấn động
+    const filter = {};
+    if (keyword) {
+      // $regex: tìm gần đúng, "i" nghĩa là không phân biệt hoa/thường
+      filter.name = { $regex: keyword, $options: "i" };
+    }
+    if (roastLevel) {
+      filter.roastLevel = roastLevel;
+    }
+
+    Product.find(filter)
       .lean()
       .then((products) => {
-        res.render("products", { products: products });
+        res.render("products", {
+          products: products,
+          keyword: keyword,
+          selectedRoast: roastLevel,
+        });
       })
       .catch((error) => next(error));
   }

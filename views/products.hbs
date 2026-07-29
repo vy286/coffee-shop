@@ -1,5 +1,22 @@
 <div class="mt-4">
   <h2 class="mb-4" style="color: #6f4e37;">Sản phẩm cà phê</h2>
+  <form method="GET" action="/products" class="row mb-4">
+    <div class="col-md-5 mb-2">
+        <input type="text" name="q" class="form-control" placeholder="Tìm theo tên sản phẩm..." value="{{keyword}}">
+    </div>
+    <div class="col-md-4 mb-2">
+        <select name="roastLevel" class="form-control">
+            <option value="">-- Tất cả mức độ rang --</option>
+            <option value="Rang nhạt" {{#eq selectedRoast "Rang nhạt"}}selected{{/eq}}>Rang nhạt</option>
+            <option value="Rang vừa" {{#eq selectedRoast "Rang vừa"}}selected{{/eq}}>Rang vừa</option>
+            <option value="Rang đậm" {{#eq selectedRoast "Rang đậm"}}selected{{/eq}}>Rang đậm</option>
+            <option value="Rang mộc" {{#eq selectedRoast "Rang mộc"}}selected{{/eq}}>Rang mộc</option>
+        </select>
+    </div>
+    <div class="col-md-3 mb-2">
+        <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>
+    </div>
+</form>
 
   <div class="row">
     {{#each products}}

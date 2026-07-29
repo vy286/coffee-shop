@@ -16,4 +16,59 @@ body {
   border-color: rgb(30.1559177888%, 21.1906449327%, 14.9421214269%);
 }
 
+.hero-banner {
+  min-height: 480px;
+  background: linear-gradient(rgba(44, 24, 16, 0.6), rgba(44, 24, 16, 0.6)), url("https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1600") center/cover no-repeat;
+}
+
+.hero-full .hero-slide-img {
+  height: 550px;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+  border-radius: 0;
+}
+.hero-full .carousel-caption {
+  bottom: 50%;
+  transform: translateY(50%);
+  left: 10%;
+  right: auto;
+  text-align: left;
+  max-width: 600px;
+}
+.hero-full .carousel-caption h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+.hero-full .carousel-caption p {
+  font-size: 1.3rem;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-caption {
+  bottom: 50%;
+  transform: translateY(50%);
+}
+.carousel-caption h1 {
+  font-size: 3rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cta-banner {
+  background-color: #6f4e37;
+}
+
 /*# sourceMappingURL=app.css.map */
