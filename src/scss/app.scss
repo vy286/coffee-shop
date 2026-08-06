@@ -14,6 +14,9 @@ body {
 
 .navbar {
   background-color: $color-primary !important;
+  position: sticky;
+  top: 0;
+  z-index: 1030; // Đảm bảo Navbar luôn nổi trên các phần tử khác (Carousel, ảnh...)
 }
 
 .btn-primary {

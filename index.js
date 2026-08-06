@@ -7,6 +7,7 @@ const { engine } = require("express-handlebars");
 
 const app = express();
 const db = require("./config/db");
+const session = require("express-session");
 const methodOverride = require("method-override");
 db.connect();
 const port = process.env.PORT || 3000;
@@ -19,6 +20,15 @@ app.use(express.static("public")); // Cấp quyền truy cập công khai cho pu
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
+
+app.use(
+  session({
+    secret: "coffee-shop-secret-key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // Giỏ hàng lưu trong 24 giờ
+  }),
+);
 
 // ===== Cấu hình Template Engine Handlebars =====
 app.engine(

@@ -1,0 +1,68 @@
+<div class="mt-4">
+  <h2 class="mb-4" style="color: #6f4e37;">Giỏ hàng của bạn</h2>
+
+  {{#if items.length}}
+    <table class="table table-bordered bg-white">
+      <thead>
+        <tr>
+          <th>Sản phẩm</th>
+          <th>Giá</th>
+          <th>Số lượng</th>
+          <th>Thành tiền</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each items}}
+          <tr>
+            <td>
+              <img
+                src="{{this.image}}"
+                alt="{{this.name}}"
+                width="60"
+                class="mr-2"
+              />
+              {{this.name}}
+            </td>
+            <td>{{this.price}} đ</td>
+            <td>
+              <form
+                action="/cart/update/{{this._id}}"
+                method="POST"
+                class="form-inline"
+              >
+                <input
+                  type="number"
+                  name="quantity"
+                  value="{{this.quantity}}"
+                  min="1"
+                  class="form-control form-control-sm text-center qty-input mr-2"
+                  style="width: 60px;"
+                />
+                <button type="submit" class="btn btn-sm btn-outline-primary">Cập
+                  nhật</button>
+              </form>
+            </td>
+            <td>{{this.subtotal}} đ</td>
+            <td>
+              <form action="/cart/remove/{{this._id}}" method="POST">
+                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <form action="/cart/clear" method="POST">
+        <button type="submit" class="btn btn-outline-secondary">Xóa hết giỏ hàng</button>
+      </form>
+      <h4 style="color: #6f4e37;">Tổng cộng: {{total}} đ</h4>
+    </div>
+
+  {{else}}
+    <p>Giỏ hàng của bạn đang trống.</p>
+    <a href="/products" class="btn btn-primary">Tiếp tục mua sắm</a>
+  {{/if}}
+</div>
