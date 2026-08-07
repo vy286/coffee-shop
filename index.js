@@ -9,7 +9,7 @@ const app = express();
 const db = require("./config/db");
 const methodOverride = require("method-override");
 db.connect();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 // ===== Middleware =====
 app.use(morgan("combined")); // Ghi log request ra Terminal
@@ -20,16 +20,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 
-const session = require('express-session');
+const session = require("express-session");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(session({
-    secret: 'coffee-shop-secret',
+app.use(
+  session({
+    secret: "coffee-shop-secret",
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: false,
+  }),
+);
 
 // ===== Cấu hình Template Engine Handlebars =====
 app.engine(

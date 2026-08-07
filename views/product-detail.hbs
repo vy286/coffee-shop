@@ -9,16 +9,40 @@
     </div>
     <div class="col-lg-6">
       <h1 class="h2" style="color: #6f4e37;">{{product.name}}</h1>
-      <p class="text-muted">Xuất xứ:
+      <p class="text-muted">
+        Xuất xứ:
         {{product.origin}}
         | Mức độ rang:
-        {{product.roastLevel}}</p>
-      <h3 class="font-weight-bold" style="color: #a9746e;">{{product.price}}
-        đ</h3>
+        {{product.roastLevel}}
+      </p>
+      <h3 class="font-weight-bold" style="color: #a9746e;">
+        {{product.price}}
+        đ
+      </h3>
       <hr />
       <p>{{product.description}}</p>
-      <a href="/products" class="btn btn-outline-secondary mt-3">← Quay lại danh
-        sách</a>
+
+      <form
+        action="/cart/add/{{product._id}}"
+        method="POST"
+        class="form-inline mt-3"
+      >
+        <label for="quantity" class="mr-2">Số lượng:</label>
+        <input
+          type="number"
+          name="quantity"
+          id="quantity"
+          value="1"
+          min="1"
+          class="form-control mr-2"
+          style="width: 70px;"
+        />
+        <button type="submit" class="btn btn-primary">🛒 Thêm vào giỏ</button>
+      </form>
+
+      <a href="/products" class="btn btn-outline-secondary mt-3">
+        ← Quay lại danh sách
+      </a>
     </div>
   </div>
 </div>

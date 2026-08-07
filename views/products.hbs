@@ -38,7 +38,12 @@
             <p class="font-weight-bold" style="color: #6f4e37;">{{this.price}}
               đ</p>
             <a href="/products/{{this.slug}}" class="btn btn-primary btn-sm">Xem
-              chi tiết</a>
+  chi tiết</a>
+<form action="/cart/add/{{this._id}}" method="POST" class="d-inline">
+  <button type="submit" class="btn btn-success btn-sm">🛒 </button>
+</form>
+
+  
             <a
               href="/products/{{this._id}}/edit"
               class="btn btn-warning btn-sm"
