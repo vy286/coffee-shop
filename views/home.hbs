@@ -1,0 +1,138 @@
+<!-- ===== SLIDESHOW QUẢNG CÁO FULL-WIDTH ===== -->
+<div
+  id="heroCarousel"
+  class="carousel slide hero-full"
+  data-ride="carousel"
+  data-interval="3000"
+>
+  <ol class="carousel-indicators">
+    <li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#heroCarousel" data-slide-to="1"></li>
+    <li data-target="#heroCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="/img/hinh-nen.jpg"
+        class="d-block w-100 hero-slide-img"
+        alt="Hạt cà phê rang"
+      />
+      <div class="carousel-caption">
+        <h1>Coffee Shop</h1>
+        <p class="lead">Hạt cà phê nguyên chất, rang xay thủ công mỗi ngày</p>
+        <a href="/products" class="btn btn-lg btn-light">Xem sản phẩm</a>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img
+        src="/img/hinh-nen-3.jpg"
+        class="d-block w-100 hero-slide-img"
+        alt="Túi hạt cà phê"
+      />
+      <div class="carousel-caption">
+        <h1>Rang mộc thủ công</h1>
+        <p class="lead">Giữ trọn hương thơm tự nhiên trong từng hạt</p>
+        <a href="/products" class="btn btn-lg btn-light">Khám phá ngay</a>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img
+        src="/img/hinh-nen-1.jpg"
+        class="d-block w-100 hero-slide-img"
+        alt="Pha cà phê"
+      />
+      <div class="carousel-caption">
+        <h1>Giao hàng tận nơi</h1>
+        <p class="lead">Đặt hàng dễ dàng, thưởng thức tại nhà</p>
+        <a href="/products" class="btn btn-lg btn-light">Đặt ngay</a>
+      </div>
+    </div>
+  </div>
+
+  <a
+    class="carousel-control-prev"
+    href="#heroCarousel"
+    role="button"
+    data-slide="prev"
+  >
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a
+    class="carousel-control-next"
+    href="#heroCarousel"
+    role="button"
+    data-slide="next"
+  >
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+<!-- ===== ĐIỂM MẠNH ===== -->
+<div class="container my-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="feature-icon mb-3">☕</div>
+      <h5>Hạt nguyên chất 100%</h5>
+      <p class="text-muted">
+        Không pha trộn phụ gia, giữ trọn hương vị tự nhiên của cà phê.
+      </p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="feature-icon mb-3">🔥</div>
+      <h5>Rang xay thủ công</h5>
+      <p class="text-muted">
+        Rang mỗi ngày với công thức riêng, đảm bảo độ tươi mới.
+      </p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="feature-icon mb-3">🚚</div>
+      <h5>Giao hàng nhanh chóng</h5>
+      <p class="text-muted">
+        Đóng gói cẩn thận, giao tận nơi trong khu vực nội thành.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SẢN PHẨM NỔI BẬT ===== -->
+<div class="container my-5">
+  <h2 class="text-center mb-4" style="color: #6f4e37;">Sản phẩm nổi bật</h2>
+  <div class="row">
+    {{#each featuredProducts}}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img
+            src="{{this.image}}"
+            class="card-img-top"
+            alt="{{this.name}}"
+            style="height: 200px; object-fit: cover;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="font-weight-bold" style="color: #6f4e37;">
+              {{this.price}}
+              đ
+            </p>
+            <a href="/products/{{this.slug}}" class="btn btn-primary btn-sm">
+              Xem chi tiết
+            </a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="text-center mt-3">
+    <a href="/products" class="btn btn-outline-secondary">
+      Xem tất cả sản phẩm →
+    </a>
+  </div>
+</div>
+
+<!-- ===== CTA CUỐI TRANG ===== -->
+<div class="cta-banner text-center text-white py-5">
+  <h3>Sẵn sàng thưởng thức ly cà phê hoàn hảo?</h3>
+  <a href="/products" class="btn btn-lg btn-light mt-3">Mua ngay</a>
+</div>

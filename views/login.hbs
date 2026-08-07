@@ -1,0 +1,37 @@
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="text-center mb-4">Đăng nhập</h2>
+
+    {{#if error}}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+    {{/if}}
+
+    <form action="/login" method="POST">
+
+        <div class="mb-3">
+            <label>Tài khoản</label>
+            <input
+                type="text"
+                class="form-control"
+                name="account"
+                placeholder="Nhập email hoặc số điện thoại"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label>Mật khẩu</label>
+            <input
+                type="password"
+                class="form-control"
+                name="password"
+                required>
+        </div>
+
+        <button class="btn btn-primary w-100">
+            Đăng nhập
+        </button>
+
+    </form>
+
+</div>

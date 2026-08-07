@@ -1,0 +1,62 @@
+<div class="mt-4">
+  <h2 class="mb-4" style="color: #6f4e37;">Sản phẩm cà phê</h2>
+  <form method="GET" action="/products" class="row mb-4">
+    <div class="col-md-5 mb-2">
+        <input type="text" name="q" class="form-control" placeholder="Tìm theo tên sản phẩm..." value="{{keyword}}">
+    </div>
+    <div class="col-md-4 mb-2">
+        <select name="roastLevel" class="form-control">
+            <option value="">-- Tất cả mức độ rang --</option>
+            <option value="Rang nhạt" {{#eq selectedRoast "Rang nhạt"}}selected{{/eq}}>Rang nhạt</option>
+            <option value="Rang vừa" {{#eq selectedRoast "Rang vừa"}}selected{{/eq}}>Rang vừa</option>
+            <option value="Rang đậm" {{#eq selectedRoast "Rang đậm"}}selected{{/eq}}>Rang đậm</option>
+            <option value="Rang mộc" {{#eq selectedRoast "Rang mộc"}}selected{{/eq}}>Rang mộc</option>
+        </select>
+    </div>
+    <div class="col-md-3 mb-2">
+        <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>
+    </div>
+</form>
+
+  <div class="row">
+    {{#each products}}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img
+            src="{{this.image}}"
+            class="card-img-top"
+            alt="{{this.name}}"
+            style="height: 200px; object-fit: cover;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text text-muted small">Xuất xứ:
+              {{this.origin}}
+              |
+              {{this.roastLevel}}</p>
+            <p class="card-text">{{this.description}}</p>
+            <p class="font-weight-bold" style="color: #6f4e37;">{{this.price}}
+              đ</p>
+            <a href="/products/{{this.slug}}" class="btn btn-primary btn-sm">Xem
+              chi tiết</a>
+            <a
+              href="/products/{{this._id}}/edit"
+              class="btn btn-warning btn-sm"
+            >Sửa</a>
+            <form
+              action="/products/{{this._id}}?_method=DELETE"
+              method="POST"
+              class="d-inline"
+            >
+              <button
+                type="submit"
+                class="btn btn-danger btn-sm"
+                onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')"
+              >Xóa</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
