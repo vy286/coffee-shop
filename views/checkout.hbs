@@ -1,0 +1,70 @@
+<div class="mt-4">
+  <h2 class="mb-4" style="color: #6f4e37;">Thông tin giao hàng</h2>
+
+  <div class="row">
+    <div class="col-md-7">
+      <form method="POST" action="/cart/checkout">
+        <div class="form-group">
+          <label for="customerName">Họ và tên</label>
+          <input
+            type="text"
+            class="form-control"
+            id="customerName"
+            name="customerName"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phone"
+            name="phone"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="address">Địa chỉ giao hàng</label>
+          <textarea
+            class="form-control"
+            id="address"
+            name="address"
+            rows="2"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="note">Ghi chú (tùy chọn)</label>
+          <textarea
+            class="form-control"
+            id="note"
+            name="note"
+            rows="2"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Xác nhận
+          đặt hàng</button>
+      </form>
+    </div>
+
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Đơn hàng của bạn</h5>
+          {{#each items}}
+            <div class="d-flex justify-content-between mb-2">
+              <span>{{this.name}} x{{this.quantity}}</span>
+              <span>{{this.subtotal}} đ</span>
+            </div>
+          {{/each}}
+          <hr />
+          <div class="d-flex justify-content-between font-weight-bold">
+            <span>Tổng cộng</span>
+            <span style="color: #6f4e37;">{{total}} đ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
