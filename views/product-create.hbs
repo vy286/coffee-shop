@@ -1,7 +1,7 @@
 <div class="mt-4">
   <h2 class="mb-4" style="color: #6f4e37;">Thêm sản phẩm mới</h2>
 
-  <form method="POST" action="/products/store">
+  <form method="POST" action="/products/store" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Tên sản phẩm</label>
       <input
@@ -26,13 +26,13 @@
     </div>
 
     <div class="form-group">
-      <label for="image">Link hình ảnh</label>
+      <label for="image">Hình ảnh sản phẩm</label>
       <input
-        type="text"
-        class="form-control"
+        type="file"
+        class="form-control-file"
         id="image"
         name="image"
-        placeholder="/img/ten-anh.jpg hoặc link URL"
+        accept="image/*"
       />
     </div>
 

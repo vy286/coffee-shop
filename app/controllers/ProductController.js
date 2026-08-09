@@ -6,10 +6,8 @@ class ProductController {
     const keyword = req.query.q || "";
     const roastLevel = req.query.roastLevel || "";
 
-    // Xây dựng điều kiện truy vấn động
     const filter = {};
     if (keyword) {
-      // $regex: tìm gần đúng, "i" nghĩa là không phân biệt hoa/thường
       filter.name = { $regex: keyword, $options: "i" };
     }
     if (roastLevel) {
@@ -35,7 +33,14 @@ class ProductController {
 
   // [POST] /products/store
   store(req, res, next) {
-    const product = new Product(req.body);
+    const productData = req.body;
+
+    // Nếu có file ảnh được upload, gán đường dẫn ảnh vào dữ liệu sản phẩm
+    if (req.file) {
+      productData.image = "/img/products/" + req.file.filename;
+    }
+
+    const product = new Product(productData);
     product
       .save()
       .then(() => res.redirect("/products"))
@@ -54,7 +59,14 @@ class ProductController {
 
   // [PUT] /products/:id - Lưu thay đổi vào Database
   update(req, res, next) {
-    Product.updateOne({ _id: req.params.id }, req.body)
+    const productData = req.body;
+
+    // Nếu có upload ảnh mới, cập nhật lại đường dẫn ảnh
+    if (req.file) {
+      productData.image = "/img/products/" + req.file.filename;
+    }
+
+    Product.updateOne({ _id: req.params.id }, productData)
       .then(() => res.redirect("/products"))
       .catch((error) => next(error));
   }
