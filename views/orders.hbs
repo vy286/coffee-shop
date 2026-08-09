@@ -1,0 +1,48 @@
+<div class="mt-4">
+  <h2 class="mb-4" style="color: #6f4e37;">Danh sách đơn hàng</h2>
+
+  {{#if orders.length}}
+    <table class="table table-bordered bg-white">
+      <thead>
+        <tr>
+          <th>Mã đơn</th>
+          <th>Khách hàng</th>
+          <th>SĐT</th>
+          <th>Địa chỉ</th>
+          <th>Sản phẩm</th>
+          <th>Tổng tiền</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orders}}
+          <tr>
+            <td><small>{{this._id}}</small></td>
+            <td>{{this.customerName}}</td>
+            <td>{{this.phone}}</td>
+            <td>{{this.address}}</td>
+            <td>
+              {{#each this.items}}
+                <div>{{this.name}} x{{this.quantity}}</div>
+              {{/each}}
+            </td>
+            <td>{{this.total}} đ</td>
+            <td>
+    <form action="/orders/{{this._id}}/status" method="POST" class="form-inline">
+        <select name="status" class="form-control form-control-sm mr-2">
+            <option value="Chờ xử lý" {{#eq this.status "Chờ xử lý"}}selected{{/eq}}>Chờ xử lý</option>
+            <option value="Đang giao" {{#eq this.status "Đang giao"}}selected{{/eq}}>Đang giao</option>
+            <option value="Đã giao" {{#eq this.status "Đã giao"}}selected{{/eq}}>Đã giao</option>
+            <option value="Đã hủy" {{#eq this.status "Đã hủy"}}selected{{/eq}}>Đã hủy</option>
+        </select>
+        <button type="submit" class="btn btn-sm btn-outline-primary">Cập nhật</button>
+    </form>
+</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>Chưa có đơn hàng nào.</p>
+  {{/if}}
+</div>
