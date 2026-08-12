@@ -1,20 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark style-header">
   <div class="container">
+    <!-- LOGO -->
     <a class="navbar-brand" href="/">
-      <img src="/img/logo1.png" alt="VTM Coffee Shop" class="navbar-logo" />
+      <img src="/img/logo1.png" alt="VTM Coffee Shop" height="50" />
     </a>
 
     <button
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
-      data-target="#mainNav"
+      data-target="#navbarSupportedContent"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ml-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- MENU BÊN TRÁI -->
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="/">Trang chủ</a>
         </li>
@@ -27,20 +29,71 @@
         <li class="nav-item">
           <a class="nav-link" href="/contact">Liên hệ</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/products/create">Thêm sản phẩm</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/cart">🛒 </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/orders">Đơn hàng</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">
-            Đăng xuất
+
+        {{#if user.isAdmin}}
+          <!-- MENU DÀNH RIÊNG CHO ADMIN -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle font-weight-bold text-warning"
+              href="#"
+              id="adminDropdown"
+              role="button"
+              data-toggle="dropdown"
+            >
+              Quản lý Shop
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/products/create">Thêm sản phẩm mới</a>
+              <a class="dropdown-item" href="/orders">Quản lý đơn hàng</a>
+            </div>
+          </li>
+        {{/if}}
+      </ul>
+
+      <!-- MENU BÊN PHẢI (GIỎ HÀNG & TÀI KHOẢN) -->
+      <ul class="navbar-nav ml-auto align-items-center">
+        <!-- NÚT GIỎ HÀNG -->
+        <li class="nav-item mr-3">
+          <a
+            class="nav-link btn btn-outline-light text-white px-3"
+            href="/cart"
+          >
+            🛒 Giỏ hàng
           </a>
         </li>
+
+        {{#if user}}
+          <!-- KHI ĐÃ ĐĂNG NHẬP -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-white font-weight-bold"
+              href="#"
+              id="userDropdown"
+              role="button"
+              data-toggle="dropdown"
+            >
+              Chào,
+              {{user.name}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              {{#unless user.isAdmin}}
+                <a class="dropdown-item" href="/orders">Lịch sử đơn hàng</a>
+                <div class="dropdown-divider"></div>
+              {{/unless}}
+              <a class="dropdown-item text-danger" href="/logout">Đăng xuất</a>
+            </div>
+          </li>
+        {{else}}
+          <!-- KHI CHƯA ĐĂNG NHẬP -->
+          <li class="nav-item">
+            <a
+              class="nav-link btn btn-warning text-dark font-weight-bold px-3"
+              href="/login"
+            >
+              Đăng nhập
+            </a>
+          </li>
+        {{/if}}
       </ul>
     </div>
   </div>

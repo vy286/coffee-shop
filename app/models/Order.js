@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 // Cấu trúc dữ liệu cho 1 đơn hàng
 const Order = new Schema({
+  userEmail: { type: String }, // 👈 Đã thêm trường này để liên kết với tài khoản người mua
   customerName: { type: String, required: true },
   phone: { type: String, required: true },
   address: { type: String, required: true },

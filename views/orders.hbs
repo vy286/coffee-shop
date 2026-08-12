@@ -18,7 +18,12 @@
         {{#each orders}}
           <tr>
             <td><small>{{this._id}}</small></td>
-            <td>{{this.customerName}}</td>
+            <td>
+    {{this.customerName}}
+    {{#if this.userEmail}}
+    <br><small class="text-muted">({{this.userEmail}})</small>
+    {{/if}}
+</td>
             <td>{{this.phone}}</td>
             <td>{{this.address}}</td>
             <td>

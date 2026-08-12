@@ -1,22 +1,30 @@
 const Order = require("../models/Order");
 
 class OrderController {
-  // [GET] /orders - Xem danh sách tất cả đơn hàng
+  // [GET] /orders - Admin xem toàn bộ đơn hàng
   index(req, res, next) {
     Order.find({})
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: -1 }) // Sắp xếp đơn mới nhất lên đầu
       .lean()
       .then((orders) => {
-        res.render("orders", { orders: orders });
+        // 🛠️ Sửa từ "orders/index" thành "orders" cho đúng file views/orders.hbs
+        res.render("orders", { orders });
       })
-      .catch((error) => next(error));
+      .catch(next);
   }
 
-  // [POST] /orders/:id/status - Cập nhật trạng thái đơn hàng
-  updateStatus(req, res, next) {
-    Order.updateOne({ _id: req.params.id }, { status: req.body.status })
-      .then(() => res.redirect("/orders"))
-      .catch((error) => next(error));
+  // [GET] /orders/my-orders - Khách xem các đơn hàng của chính mình
+  myOrders(req, res, next) {
+    const userEmail = req.session.user ? req.session.user.account : null;
+
+    Order.find({ userEmail: userEmail })
+      .sort({ createdAt: -1 }) // Sắp xếp đơn mới nhất lên đầu
+      .lean()
+      .then((orders) => {
+        // Nếu dùng chung giao diện xem đơn với Admin hoặc file views/orders.hbs
+        res.render("orders", { orders });
+      })
+      .catch(next);
   }
 }
 

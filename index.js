@@ -33,6 +33,12 @@ app.use(
   }),
 );
 
+// Đưa thông tin người dùng vào Handlebars
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
+
 // ===== Cấu hình Template Engine Handlebars =====
 app.engine(
   "hbs",

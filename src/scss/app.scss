@@ -1,99 +1,102 @@
-// app.scss - File điều khiển toàn bộ style của website Coffee Shop
-@use "sass:color";
-
-// ===== Biến màu sắc chủ đạo =====
-$color-primary: #6f4e37; // Nâu cà phê đậm - dùng cho nút, tiêu đề
-$color-secondary: #a9746e; // Nâu nhạt - điểm nhấn
-$color-cream: #f5e9da; // Kem - nền trang
-$color-dark: #2c1810; // Nâu đen - chữ chính
-
+/* ==================== TRANG ĐĂNG NHẬP & ĐĂNG KÝ ==================== */
 body {
-  background-color: $color-cream;
-  color: $color-dark;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar {
-  background-color: $color-primary !important;
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f7ead8; /* Nền màu kem nhạt */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.btn-primary {
-  background-color: $color-primary;
-  border-color: $color-primary;
-
-  &:hover {
-    background-color: color.adjust($color-primary, $lightness: -10%);
-    border-color: color.adjust($color-primary, $lightness: -10%);
-  }
-}
-// ===== Trang chủ: Hero Banner =====
-.hero-banner {
-  min-height: 480px;
-  background:
-    linear-gradient(rgba(44, 24, 16, 0.6), rgba(44, 24, 16, 0.6)),
-    url("https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1600")
-      center / cover no-repeat;
-}
-// ===== Hero Banner full-width =====
-.hero-full {
-  .hero-slide-img {
-    height: 550px;
-    width: 100%;
-    object-fit: cover;
-    filter: brightness(0.5); // Làm tối ảnh để chữ nổi bật
-    border-radius: 0; // Không bo góc, tràn viền
-  }
-
-  .carousel-caption {
-    bottom: 50%;
-    transform: translateY(50%);
-    left: 10%;
-    right: auto;
-    text-align: left;
-    max-width: 600px;
-
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-    }
-
-    p {
-      font-size: 1.3rem;
-      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
-    }
-  }
+.login-box {
+  width: 100%;
+  max-width: 450px;
+  background-color: #654321; /* Khung nâu cà phê */
+  padding: 40px;
+  border-radius: 16px; /* Bo góc mềm mại */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 
-.carousel-caption {
-  bottom: 50%;
-  transform: translateY(50%);
-
-  h1 {
-    font-size: 3rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  }
+.login-logo {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.feature-icon {
-  font-size: 2.5rem;
+.login-logo img {
+  max-width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-.card {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
+.login-box h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
 }
 
-.cta-banner {
-  background-color: $color-primary;
+.login-box .form-group {
+  margin-bottom: 20px;
 }
-// ===== Logo trên Navbar =====
-.navbar-logo {
-  height: 55px;
-  width: auto;
+
+.login-box label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.login-box input {
+  width: 100%;
+  height: 48px;
+  padding: 10px 15px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #2b1704;
+  box-shadow: 0 0 0 3px rgba(43, 23, 4, 0.2);
+}
+
+.login-box button {
+  width: 100%;
+  height: 48px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2b1704; /* Nút Đăng nhập màu nâu đậm */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-box button:hover {
+  background-color: #1a0e02;
+}
+
+.login-error {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f8d7da;
+  color: #842029;
+  text-align: center;
 }

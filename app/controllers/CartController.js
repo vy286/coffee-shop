@@ -144,6 +144,7 @@ class CartController {
         });
 
         const order = new Order({
+          userEmail: req.session.user ? req.session.user.account : null,
           customerName: req.body.customerName,
           phone: req.body.phone,
           address: req.body.address,
