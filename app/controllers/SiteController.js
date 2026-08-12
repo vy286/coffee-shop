@@ -1,36 +1,38 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 
-// Tài khoản Admin cố định
 const ADMIN_ACCOUNT = "admin@gmail.com";
 const ADMIN_PASSWORD = "123456";
 
 class SiteController {
-  // [GET] /
   home(req, res) {
     res.render("home");
   }
 
-  // [GET] /about
   about(req, res) {
     res.render("about");
   }
 
-  // [GET] /contact
   contact(req, res) {
     res.render("contact");
   }
 
-  // [GET] /login - Hiển thị form đăng nhập với layout "login"
+  // 👇 Đảm bảo có hàm này
+  contactPost(req, res) {
+    console.log("Dữ liệu liên hệ nhận được:", req.body);
+    res.render("contact", {
+      success: true,
+      message: "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất.",
+    });
+  }
+
   login(req, res) {
     res.render("login", { layout: "login" });
   }
 
-  // [POST] /login - Xử lý đăng nhập
   loginPost(req, res, next) {
     const { account, password } = req.body;
 
-    // Đăng nhập Admin
     if (account === ADMIN_ACCOUNT && password === ADMIN_PASSWORD) {
       req.session.user = {
         account: account,
@@ -40,7 +42,6 @@ class SiteController {
       return res.redirect("/");
     }
 
-    // Đăng nhập Khách hàng (Email hoặc SĐT)
     User.findOne({
       $or: [{ email: account }, { phone: account }],
     })
@@ -72,12 +73,10 @@ class SiteController {
       .catch((error) => next(error));
   }
 
-  // [GET] /register - Hiển thị form đăng ký
   register(req, res) {
     res.render("register", { layout: "login" });
   }
 
-  // [POST] /register - Xử lý đăng ký
   registerPost(req, res, next) {
     const { name, email, password, phone } = req.body;
 
@@ -108,7 +107,6 @@ class SiteController {
       .catch((error) => next(error));
   }
 
-  // [GET] /logout - Đăng xuất
   logout(req, res) {
     req.session.destroy((err) => {
       if (err) {

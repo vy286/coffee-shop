@@ -7,6 +7,7 @@ const AuthMiddleware = require("../app/middleware/AuthMiddleware");
 router.get("/", AuthMiddleware, SiteController.home);
 router.get("/about", AuthMiddleware, SiteController.about);
 router.get("/contact", AuthMiddleware, SiteController.contact);
+router.post("/contact", SiteController.contactPost);
 
 router.get("/login", SiteController.login);
 router.post("/login", SiteController.loginPost);
