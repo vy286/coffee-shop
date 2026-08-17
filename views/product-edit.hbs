@@ -1,51 +1,124 @@
-<div class="mt-4">
-    <h2 class="mb-4" style="color: #6f4e37;">Cập nhật sản phẩm</h2>
+<div class="container mt-4 mb-5" style="max-width: 800px;">
+    <!-- TIÊU ĐỀ -->
+    <div class="card border-0 shadow-sm rounded-lg p-4">
+        <h2 class="mb-4 font-weight-bold" style="color: #6f4e37; font-size: 1.6rem;">
+            Cập nhật sản phẩm
+        </h2>
 
-    <form method="POST" action="/products/{{product._id}}?_method=PUT" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="name">Tên sản phẩm</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{product.name}}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="description">Mô tả</label>
-            <textarea class="form-control" id="description" name="description" rows="3">{{product.description}}</textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Ảnh hiện tại</label>
-            <div>
-                <img src="{{product.image}}" alt="{{product.name}}" width="150" class="rounded mb-2">
+        <form method="POST" action="/products/{{product._id}}?_method=PUT" enctype="multipart/form-data">
+            
+            <!-- TÊN SẢN PHẨM -->
+            <div class="form-group mb-3">
+                <label for="name" class="font-weight-bold text-secondary">Tên sản phẩm</label>
+                <input 
+                    type="text" 
+                    class="form-control rounded-lg border-muted py-2" 
+                    id="name" 
+                    name="name" 
+                    value="{{product.name}}" 
+                    required
+                    style="border-color: #d7ccc8;"
+                >
             </div>
-            <label for="image">Chọn ảnh mới (bỏ trống nếu giữ ảnh cũ)</label>
-            <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
-        </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="price">Giá (đ)</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{product.price}}">
+            <!-- MÔ TẢ -->
+            <div class="form-group mb-3">
+                <label for="description" class="font-weight-bold text-secondary">Mô tả</label>
+                <textarea 
+                    class="form-control rounded-lg border-muted" 
+                    id="description" 
+                    name="description" 
+                    rows="4"
+                    style="border-color: #d7ccc8;"
+                >{{product.description}}</textarea>
             </div>
-            <div class="form-group col-md-4">
-                <label for="origin">Xuất xứ</label>
-                <input type="text" class="form-control" id="origin" name="origin" value="{{product.origin}}">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="roastLevel">Mức độ rang</label>
-                <select class="form-control" id="roastLevel" name="roastLevel">
-                    <option value="Rang nhạt" {{#eq product.roastLevel "Rang nhạt"}}selected{{/eq}}>Rang nhạt</option>
-                    <option value="Rang vừa" {{#eq product.roastLevel "Rang vừa"}}selected{{/eq}}>Rang vừa</option>
-                    <option value="Rang đậm" {{#eq product.roastLevel "Rang đậm"}}selected{{/eq}}>Rang đậm</option>
-                    <option value="Rang mộc" {{#eq product.roastLevel "Rang mộc"}}selected{{/eq}}>Rang mộc</option>
-                </select>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label for="slug">Slug</label>
-            <input type="text" class="form-control" id="slug" name="slug" value="{{product.slug}}" required>
-        </div>
+            <!-- ẢNH SẢN PHẨM -->
+            <div class="form-group mb-4 p-3 rounded" style="background-color: #fdfbf7; border: 1px dashed #d7ccc8;">
+                <label class="font-weight-bold text-secondary d-block">Ảnh hiện tại</label>
+                <div class="mb-3">
+                    <img 
+                        src="{{product.image}}" 
+                        alt="{{product.name}}" 
+                        width="140" 
+                        class="rounded shadow-sm border p-1 bg-white"
+                        style="object-fit: cover; height: 140px;"
+                    >
+                </div>
+                <label for="image" class="font-weight-bold text-secondary">Chọn ảnh mới <small class="text-muted">(Bỏ trống nếu giữ ảnh cũ)</small></label>
+                <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
+            </div>
 
-        <button type="submit" class="btn btn-primary mt-2">Lưu thay đổi</button>
-    </form>
+            <!-- GIÁ, XUẤT XỨ, MỨC ĐỘ RANG -->
+            <div class="form-row">
+                <div class="form-group col-md-4 mb-3">
+                    <label for="price" class="font-weight-bold text-secondary">Giá (đ)</label>
+                    <input 
+                        type="number" 
+                        class="form-control rounded-lg border-muted py-2" 
+                        id="price" 
+                        name="price" 
+                        value="{{formatPrice product.price}}"
+                        style="border-color: #d7ccc8;"
+                    >
+                </div>
+
+                <div class="form-group col-md-4 mb-3">
+                    <label for="origin" class="font-weight-bold text-secondary">Xuất xứ</label>
+                    <input 
+                        type="text" 
+                        class="form-control rounded-lg border-muted py-2" 
+                        id="origin" 
+                        name="origin" 
+                        value="{{product.origin}}"
+                        style="border-color: #d7ccc8;"
+                    >
+                </div>
+
+                <div class="form-group col-md-4 mb-3">
+                    <label for="roastLevel" class="font-weight-bold text-secondary">Mức độ rang</label>
+                    <select 
+                        class="form-control rounded-lg border-muted py-2" 
+                        id="roastLevel" 
+                        name="roastLevel"
+                        style="border-color: #d7ccc8; cursor: pointer; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%274%27 height=%275%27 viewBox=%270 0 4 5%27%3E%3Cpath fill=%27%23343a40%27 d=%27M2 0L0 2h4zm0 5L0 3h4z%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 8px 10px;"
+                    >
+                        <option value="Rang nhạt" {{#eq product.roastLevel "Rang nhạt"}}selected{{/eq}}>Rang nhạt</option>
+                        <option value="Rang vừa" {{#eq product.roastLevel "Rang vừa"}}selected{{/eq}}>Rang vừa</option>
+                        <option value="Rang đậm" {{#eq product.roastLevel "Rang đậm"}}selected{{/eq}}>Rang đậm</option>
+                        <option value="Rang mộc" {{#eq product.roastLevel "Rang mộc"}}selected{{/eq}}>Rang mộc</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SLUG -->
+            <div class="form-group mb-4">
+                <label for="slug" class="font-weight-bold text-secondary">Slug (Đường dẫn tĩnh)</label>
+                <input 
+                    type="text" 
+                    class="form-control rounded-lg border-muted py-2 bg-light" 
+                    id="slug" 
+                    name="slug" 
+                    value="{{product.slug}}" 
+                    required
+                    style="border-color: #d7ccc8;"
+                >
+            </div>
+
+            <!-- NÚT LƯU & HỦY -->
+            <div class="d-flex align-items-center justify-content-end mt-4">
+                <a href="/products" class="btn btn-outline-secondary rounded-pill px-4 mr-2">Hủy</a>
+                <button 
+                    type="submit" 
+                    class="btn rounded-pill font-weight-bold text-white px-4 py-2 shadow-sm"
+                    style="background-color: #6f4e37; border: none; transition: all 0.2s ease;"
+                    onmouseover="this.style.backgroundColor='#5a3e2b'"
+                    onmouseout="this.style.backgroundColor='#6f4e37'"
+                >
+                    Lưu thay đổi
+                </button>
+            </div>
+
+        </form>
+    </div>
 </div>

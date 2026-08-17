@@ -1,71 +1,128 @@
-<div class="mt-4">
-  <h2 class="mb-4" style="color: #6f4e37;">Giỏ hàng của bạn</h2>
+<div class="container my-5">
+  <!-- Header trang -->
+  <div class="d-flex align-items-center mb-4">
+    <h2 class="mb-0 font-weight-bold" style="color: #6f4e37;">Giỏ hàng của bạn</h2>
+  </div>
 
   {{#if items.length}}
-    <table class="table table-bordered bg-white">
-      <thead>
-        <tr>
-          <th>Sản phẩm</th>
-          <th>Giá</th>
-          <th>Số lượng</th>
-          <th>Thành tiền</th>
-          <th>Hành động</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each items}}
-          <tr>
-            <td>
-              <img
-                src="{{this.image}}"
-                alt="{{this.name}}"
-                width="60"
-                class="mr-2"
-              />
-              {{this.name}}
-            </td>
-            <td>{{this.price}} đ</td>
-            <td>
-              <form
-                action="/cart/update/{{this._id}}"
-                method="POST"
-                class="form-inline"
-              >
-                <input
-                  type="number"
-                  name="quantity"
-                  value="{{this.quantity}}"
-                  min="1"
-                  class="form-control form-control-sm text-center qty-input mr-2"
-                  style="width: 60px;"
-                />
-                <button type="submit" class="btn btn-sm btn-outline-primary">Cập
-                  nhật</button>
-              </form>
-            </td>
-            <td>{{this.subtotal}} đ</td>
-            <td>
-              <form action="/cart/remove/{{this._id}}" method="POST">
-                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
-              </form>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+    <div class="row">
+      <!-- Bảng danh sách sản phẩm -->
+      <div class="col-lg-8 mb-4">
+        <div class="card border-0 shadow-sm rounded-lg overflow-hidden">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead style="background-color: #f8f9fa; color: #6f4e37;">
+                  <tr>
+                    <th class="border-0 py-3 pl-4">Sản phẩm</th>
+                    <th class="border-0 py-3">Giá</th>
+                    <th class="border-0 py-3">Số lượng</th>
+                    <th class="border-0 py-3">Thành tiền</th>
+                    <th class="border-0 py-3 text-center">Xóa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each items}}
+                    <tr>
+                      <td class="align-middle pl-4">
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="{{this.image}}"
+                            alt="{{this.name}}"
+                            width="70"
+                            height="70"
+                            class="rounded border mr-3"
+                            style="object-fit: cover;"
+                          />
+                          <span class="font-weight-semibold text-dark">{{this.name}}</span>
+                        </div>
+                      </td>
+                      <td class="align-middle text-muted">{{formatPrice this.price}} đ</td>
+                      <td class="align-middle">
+                        <form
+                          action="/cart/update/{{this._id}}"
+                          method="POST"
+                          class="d-flex align-items-center"
+                        >
+                          <input
+                            type="number"
+                            name="quantity"
+                            value="{{this.quantity}}"
+                            min="1"
+                            class="form-control form-control-sm text-center rounded mr-2"
+                            style="width: 55px;"
+                          />
+                          <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            ↻
+                          </button>
+                        </form>
+                      </td>
+                      <td class="align-middle font-weight-bold" style="color: #6f4e37;">
+                        {{formatPrice this.subtotal}} đ
+                      </td>
+                      <td class="align-middle text-center">
+                        <form action="/cart/remove/{{this._id}}" method="POST" class="m-0">
+                          <button type="submit" class="btn btn-sm btn-light text-danger rounded-circle p-2" title="Xóa">
+                            ✕
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
-    <div class="d-flex justify-content-between align-items-center mt-4">
-      <form action="/cart/clear" method="POST">
-        <button type="submit" class="btn btn-outline-secondary">Xóa hết giỏ hàng</button>
-      </form>
-      <h4 style="color: #6f4e37;">Tổng cộng: {{total}} đ</h4>
-    </div>
-    <div class="text-right mt-3">
-      <a href="/cart/checkout" class="btn btn-primary btn-lg">Tiến hành đặt hàng
-        →</a>
+        <div class="mt-3">
+          <form action="/cart/clear" method="POST">
+            <button type="submit" class="btn btn-link text-muted p-0 text-decoration-none" style="font-size: 0.9rem;">
+              🗑 Xóa toàn bộ giỏ hàng
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Khối Thanh toán (Cart Summary Side Panel) -->
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm rounded-lg p-4" style="background-color: #fdfbf7;">
+          <h5 class="font-weight-bold mb-3" style="color: #6f4e37;">Tóm tắt đơn hàng</h5>
+          <hr />
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Tạm tính</span>
+            <span>{{formatPrice total}} đ</span>
+          </div>
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Vận chuyển</span>
+            <span class="text-success font-weight-bold">Miễn phí</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <span class="font-weight-bold text-dark">Tổng tiền</span>
+            <h4 class="font-weight-bold mb-0" style="color: #6f4e37;">{{formatPrice total}} đ</h4>
+          </div>
+          <a
+            href="/cart/checkout"
+            class="btn btn-block py-3 font-weight-bold text-white shadow-sm"
+            style="background-color: #6f4e37; border-radius: 8px;"
+          >
+            Tiến hành đặt hàng →
+          </a>
+        </div>
+      </div>
     </div>
   {{else}}
-    <p>Giỏ hàng của bạn đang trống.</p>
-    <a href="/products" class="btn btn-primary">Tiếp tục mua sắm</a>
+    <!-- Giao diện giỏ hàng trống -->
+    <div class="text-center py-5 card border-0 shadow-sm rounded-lg">
+      <div class="my-4">
+        <span style="font-size: 4rem;">🛒</span>
+        <h4 class="mt-3 font-weight-bold text-dark">Giỏ hàng của bạn đang trống</h4>
+        <p class="text-muted">Hãy chọn thêm vài món cà phê thơm ngon nhé!</p>
+        <a href="/products" class="btn text-white mt-2 px-4 py-2" style="background-color: #6f4e37;">
+          Tiếp tục mua sắm
+        </a>
+      </div>
+    </div>
   {{/if}}
 </div>

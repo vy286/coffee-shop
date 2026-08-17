@@ -39,11 +39,32 @@ app.use((req, res, next) => {
   next();
 });
 
+// Chặn trình duyệt cache các trang HTML để tránh bug back về trang đã đăng xuất
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  res.set("Pragma", "no-cache");
+  res.set("Expires", "0");
+  next();
+});
+
 // ===== Cấu hình Template Engine Handlebars =====
 app.engine(
   "hbs",
-  engine({ extname: ".hbs", helpers: { eq: (a, b) => a == b } }),
-); //Helper so sánh 2 giá trị, dùng để chọn sẵn option trong form
+  engine({
+    extname: ".hbs",
+    helpers: {
+
+      // So sánh 2 giá trị
+      eq: (a, b) => a == b,
+
+      // Định dạng giá tiền Việt Nam
+      formatPrice: (price) => {
+        return Number(price).toLocaleString("vi-VN");
+      }
+
+    }
+  })
+);
 
 app.set("view engine", "hbs");
 app.set("views", "./views");

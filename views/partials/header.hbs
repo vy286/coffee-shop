@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark style-header">
+<nav class="navbar navbar-expand-lg style-header shadow-sm bg-white sticky-top py-2">
   <div class="container">
     <!-- LOGO -->
-    <a class="navbar-brand" href="/">
-      <img src="/img/logo1.png" alt="VTM Coffee Shop" height="50" />
+    <a class="navbar-brand py-0" href="/">
+      <img src="/img/logo1.png" alt="VTM Coffee Shop" height="48" style="object-fit: contain;" />
     </a>
 
     <button
-      class="navbar-toggler"
+      class="navbar-toggler border-0"
       type="button"
       data-toggle="collapse"
       data-target="#navbarSupportedContent"
@@ -16,25 +16,25 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- MENU BÊN TRÁI -->
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto align-items-lg-center">
         <li class="nav-item">
-          <a class="nav-link" href="/">Trang chủ</a>
+          <a class="nav-link nav-custom-link" href="/">Trang chủ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products">Sản phẩm</a>
+          <a class="nav-link nav-custom-link" href="/products">Sản phẩm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/about">Giới thiệu</a>
+          <a class="nav-link nav-custom-link" href="/about">Giới thiệu</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/contact">Liên hệ</a>
+          <a class="nav-link nav-custom-link" href="/contact">Liên hệ</a>
         </li>
 
         {{#if user.isAdmin}}
           <!-- MENU DÀNH RIÊNG CHO ADMIN -->
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle font-weight-bold text-warning"
+              class="nav-link dropdown-toggle font-weight-bold text-admin-badge px-3 py-1 rounded-pill"
               href="#"
               id="adminDropdown"
               role="button"
@@ -42,23 +42,24 @@
             >
               Quản lý Shop
             </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/products/create">Thêm sản phẩm mới</a>
-              <a class="dropdown-item" href="/orders">Quản lý đơn hàng</a>
+            <div class="dropdown-menu border-0 shadow-lg rounded-lg">
+              <a class="dropdown-item py-2" href="/products/create">Thêm sản phẩm mới</a>
+              <a class="dropdown-item py-2" href="/orders">Quản lý đơn hàng</a>
             </div>
           </li>
         {{/if}}
       </ul>
 
       <!-- MENU BÊN PHẢI (GIỎ HÀNG & TÀI KHOẢN) -->
-      <ul class="navbar-nav ml-auto align-items-center">
+      <ul class="navbar-nav ml-auto align-items-lg-center">
         <!-- NÚT GIỎ HÀNG -->
-        <li class="nav-item mr-3">
+        <li class="nav-item mr-lg-3 mb-2 mb-lg-0">
           <a
-            class="nav-link btn btn-outline-light text-white px-3"
+            class="btn btn-cart-custom rounded-pill px-3 py-2 d-inline-flex align-items-center"
             href="/cart"
           >
-            🛒 Giỏ hàng
+            <ion-icon name="cart-outline" class="cart-header-icon"></ion-icon>
+            <span class="ml-2">Giỏ hàng</span>
           </a>
         </li>
 
@@ -66,28 +67,27 @@
           <!-- KHI ĐÃ ĐĂNG NHẬP -->
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle text-white font-weight-bold"
+              class="nav-link dropdown-toggle text-dark font-weight-semibold"
               href="#"
               id="userDropdown"
               role="button"
               data-toggle="dropdown"
             >
-              Chào,
-              {{user.name}}
+              Chào, <span style="color: #6f4e37;">{{user.name}}</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow-lg rounded-lg">
               {{#unless user.isAdmin}}
-                <a class="dropdown-item" href="/orders">Lịch sử đơn hàng</a>
+                <a class="dropdown-item py-2" href="/orders">Lịch sử đơn hàng</a>
                 <div class="dropdown-divider"></div>
               {{/unless}}
-              <a class="dropdown-item text-danger" href="/logout">Đăng xuất</a>
+              <a class="dropdown-item py-2 text-danger" href="/logout">Đăng xuất</a>
             </div>
           </li>
         {{else}}
           <!-- KHI CHƯA ĐĂNG NHẬP -->
           <li class="nav-item">
             <a
-              class="nav-link btn btn-warning text-dark font-weight-bold px-3"
+              class="btn btn-login-custom rounded-pill px-4 py-2 font-weight-bold"
               href="/login"
             >
               Đăng nhập

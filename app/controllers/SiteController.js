@@ -35,7 +35,7 @@ class SiteController {
 
     if (account === ADMIN_ACCOUNT && password === ADMIN_PASSWORD) {
       req.session.user = {
-        account: account,
+        account: ADMIN_ACCOUNT,
         name: "Quản trị viên",
         isAdmin: true,
       };
@@ -64,8 +64,10 @@ class SiteController {
           req.session.user = {
             account: user.email || user.phone,
             name: user.name,
-            isAdmin: false,
+            isAdmin: user.role === "admin",   // ✅ sửa ở đây
           };
+
+          console.log("SESSION SET:", req.session.user);
 
           res.redirect("/");
         });

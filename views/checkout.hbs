@@ -1,71 +1,327 @@
-<div class="mt-4">
-  <h2 class="mb-4" style="color: #6f4e37;">Thông tin giao hàng</h2>
+<div class="container my-5">
+
+  <h2
+    class="mb-4 font-weight-bold"
+    style="color: #6f4e37;"
+  >
+    Thông tin giao hàng
+  </h2>
 
   <div class="row">
-    <div class="col-md-7">
-      <form method="POST" action="/cart/checkout">
-        <div class="form-group">
-          <label for="customerName">Họ và tên</label>
-          <input
-            type="text"
-            class="form-control"
-            id="customerName"
-            name="customerName"
-            value="{{userName}}"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="phone">Số điện thoại</label>
-          <input
-            type="tel"
-            class="form-control"
-            id="phone"
-            name="phone"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="address">Địa chỉ giao hàng</label>
-          <textarea
-            class="form-control"
-            id="address"
-            name="address"
-            rows="2"
-            required
-          ></textarea>
-        </div>
-        <div class="form-group">
-          <label for="note">Ghi chú (tùy chọn)</label>
-          <textarea
-            class="form-control"
-            id="note"
-            name="note"
-            rows="2"
-          ></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block mt-3">Xác nhận
-          đặt hàng</button>
-      </form>
+
+    <!-- ========================= -->
+    <!-- CỘT TRÁI: THÔNG TIN GIAO HÀNG -->
+    <!-- ========================= -->
+
+    <div class="col-lg-7 mb-4">
+
+      <div class="card border-0 shadow-sm rounded-lg p-4">
+
+        <h5
+          class="font-weight-bold mb-4"
+          style="color: #6f4e37;"
+        >
+          Địa chỉ nhận hàng
+        </h5>
+
+        <form method="POST" action="/cart/checkout">
+
+          <!-- Họ tên -->
+          <div class="form-group mb-3">
+
+            <label
+              for="customerName"
+              class="font-weight-semibold"
+            >
+              Họ và tên
+            </label>
+
+            <input
+              type="text"
+              class="form-control rounded-lg"
+              id="customerName"
+              name="customerName"
+              value="{{userName}}"
+              placeholder="Nhập họ và tên người nhận"
+              required
+            />
+
+          </div>
+
+
+          <!-- Số điện thoại -->
+          <div class="form-group mb-3">
+
+            <label
+              for="phone"
+              class="font-weight-semibold"
+            >
+              Số điện thoại
+            </label>
+
+            <input
+              type="tel"
+              class="form-control rounded-lg"
+              id="phone"
+              name="phone"
+              placeholder="Nhập số điện thoại liên hệ"
+              required
+            />
+
+          </div>
+
+
+          <!-- Địa chỉ -->
+          <div class="form-group mb-3">
+
+            <label
+              for="address"
+              class="font-weight-semibold"
+            >
+              Địa chỉ giao hàng
+            </label>
+
+            <textarea
+              class="form-control rounded-lg"
+              id="address"
+              name="address"
+              rows="2"
+              placeholder="Số nhà, tên đường, phường/xã, quận/huyện..."
+              required
+            ></textarea>
+
+          </div>
+
+
+          <!-- Ghi chú -->
+          <div class="form-group mb-4">
+
+            <label
+              for="note"
+              class="font-weight-semibold"
+            >
+              Ghi chú (tùy chọn)
+            </label>
+
+            <textarea
+              class="form-control rounded-lg"
+              id="note"
+              name="note"
+              rows="2"
+              placeholder="Ghi chú thêm về thời gian giao hàng hoặc chỉ đường..."
+            ></textarea>
+
+          </div>
+
+
+          <!-- ========================= -->
+          <!-- PHƯƠNG THỨC THANH TOÁN -->
+          <!-- ========================= -->
+
+          <h5
+            class="font-weight-bold mb-3 mt-4"
+            style="color: #6f4e37;"
+          >
+            Phương thức thanh toán
+          </h5>
+
+          <div class="custom-control custom-radio mb-2">
+
+            <input
+              type="radio"
+              id="cod"
+              name="paymentMethod"
+              class="custom-control-input"
+              value="COD"
+              checked
+            />
+
+            <label
+              class="custom-control-label"
+              for="cod"
+            >
+              Thanh toán khi nhận hàng (COD)
+            </label>
+
+          </div>
+
+
+          <div class="custom-control custom-radio mb-4">
+
+            <input
+              type="radio"
+              id="banking"
+              name="paymentMethod"
+              class="custom-control-input"
+              value="BANK"
+            />
+
+            <label
+              class="custom-control-label"
+              for="banking"
+            >
+              Chuyển khoản ngân hàng (QR Code)
+            </label>
+
+          </div>
+
+
+          <!-- Nút đặt hàng -->
+          <button
+            type="submit"
+            class="btn btn-block py-3 font-weight-bold text-white shadow-sm"
+            style="
+              background-color: #6f4e37;
+              border-radius: 8px;
+            "
+          >
+            Xác nhận đặt hàng
+          </button>
+
+        </form>
+
+      </div>
+
     </div>
 
-    <div class="col-md-5">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title mb-3">Đơn hàng của bạn</h5>
+
+    <!-- ========================= -->
+    <!-- CỘT PHẢI: ĐƠN HÀNG -->
+    <!-- ========================= -->
+
+    <div class="col-lg-5">
+
+      <div
+        class="card border-0 shadow-sm rounded-lg p-4"
+        style="background-color: #fdfbf7;"
+      >
+
+        <h5
+          class="font-weight-bold mb-3"
+          style="color: #6f4e37;"
+        >
+          Đơn hàng của bạn
+        </h5>
+
+        <hr class="mt-0" />
+
+
+        <!-- ========================= -->
+        <!-- DANH SÁCH SẢN PHẨM -->
+        <!-- ========================= -->
+
+        <div
+          class="cart-items-summary mb-3"
+          style="
+            max-height: 280px;
+            overflow-y: auto;
+          "
+        >
+
           {{#each items}}
-            <div class="d-flex justify-content-between mb-2">
-              <span>{{this.name}} x{{this.quantity}}</span>
-              <span>{{this.subtotal}} đ</span>
+
+            <div
+              class="d-flex align-items-center justify-content-between mb-3 pr-2"
+            >
+
+              <!-- Thông tin sản phẩm -->
+              <div class="d-flex align-items-center">
+
+                <img
+                  src="{{this.image}}"
+                  alt="{{this.name}}"
+                  width="50"
+                  height="50"
+                  class="rounded border mr-3"
+                  style="object-fit: cover;"
+                />
+
+                <div>
+
+                  <h6
+                    class="mb-0 font-weight-semibold text-dark"
+                    style="font-size: 0.95rem;"
+                  >
+                    {{this.name}}
+                  </h6>
+
+                  <small class="text-muted">
+                    SL: {{this.quantity}}
+                  </small>
+
+                </div>
+
+              </div>
+
+
+              <!-- THÀNH TIỀN -->
+              <span class="font-weight-semibold text-dark">
+                {{formatPrice this.subtotal}} đ
+              </span>
+
             </div>
+
           {{/each}}
-          <hr />
-          <div class="d-flex justify-content-between font-weight-bold">
-            <span>Tổng cộng</span>
-            <span style="color: #6f4e37;">{{total}} đ</span>
-          </div>
+
         </div>
+
+
+        <hr />
+
+
+        <!-- Tạm tính -->
+        <div class="d-flex justify-content-between mb-2">
+
+          <span class="text-muted">
+            Tạm tính
+          </span>
+
+          <span>
+            {{formatPrice total}} đ
+          </span>
+
+        </div>
+
+
+        <!-- Phí vận chuyển -->
+        <div class="d-flex justify-content-between mb-3">
+
+          <span class="text-muted">
+            Phí vận chuyển
+          </span>
+
+          <span class="text-success font-weight-bold">
+            Miễn phí
+          </span>
+
+        </div>
+
+
+        <hr />
+
+
+        <!-- Tổng cộng -->
+        <div
+          class="d-flex justify-content-between align-items-center"
+        >
+
+          <span class="font-weight-bold text-dark">
+            Tổng cộng
+          </span>
+
+          <h4
+            class="font-weight-bold mb-0"
+            style="color: #6f4e37;"
+          >
+            {{formatPrice total}} đ
+          </h4>
+
+        </div>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
