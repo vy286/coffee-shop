@@ -1,5 +1,7 @@
+const dns = require("dns");
+dns.setServers(["8.8.8.8"]);
+
 require("dotenv").config();
-// index.js - File khởi tạo server chính của dự án Coffee Shop
 
 const express = require("express");
 const morgan = require("morgan");
@@ -53,17 +55,15 @@ app.engine(
   engine({
     extname: ".hbs",
     helpers: {
-
       // So sánh 2 giá trị
       eq: (a, b) => a == b,
 
       // Định dạng giá tiền Việt Nam
       formatPrice: (price) => {
         return Number(price).toLocaleString("vi-VN");
-      }
-
-    }
-  })
+      },
+    },
+  }),
 );
 
 app.set("view engine", "hbs");

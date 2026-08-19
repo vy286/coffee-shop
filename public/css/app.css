@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
+/* ==================== NAVBAR - MÀU NÂU CÀ PHÊ ==================== */
+.navbar {
+  background-color: #6f4e37 !important;
+}
+
 /* ==================== TRANG ĐĂNG NHẬP & ĐĂNG KÝ ==================== */
 body {
   margin: 0;
@@ -151,7 +157,6 @@ body {
   box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.2);
 }
 
-
 /* =========================
    NÚT MUA NGAY
 ========================= */
@@ -195,7 +200,6 @@ body {
   display: block;
 }
 
-
 /* =========================
    THÔNG TIN SẢN PHẨM
 ========================= */
@@ -225,7 +229,6 @@ body {
   margin-bottom: 18px;
 }
 
-
 /* =========================
    MÔ TẢ
 ========================= */
@@ -248,7 +251,6 @@ body {
   line-height: 1.7;
   margin-bottom: 0;
 }
-
 
 /* =========================
    SỐ LƯỢNG + GIỎ HÀNG
@@ -273,7 +275,6 @@ body {
   text-align: center;
   margin-right: 10px;
 }
-
 
 /* =========================
    NÚT THÊM VÀO GIỎ
@@ -318,13 +319,11 @@ body {
   box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.2);
 }
 
-
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 991px) {
-
   .product-detail-image img {
     height: 450px;
   }
@@ -332,11 +331,9 @@ body {
   .product-detail-title {
     font-size: 30px;
   }
-
 }
 
 @media (max-width: 575px) {
-
   .product-detail-image img {
     height: 350px;
   }
@@ -353,7 +350,6 @@ body {
   .quantity-input {
     margin-right: 0;
   }
-
 }
 
 /* Tùy chỉnh màu chủ đạo & Nav links */
@@ -426,4 +422,26 @@ body {
 /* Bo tròn khung nhẹ */
 .rounded-lg {
   border-radius: 12px !important;
+}
+
+/* Đảm bảo chữ trên Navbar luôn trắng, dễ đọc trên nền nâu */
+.navbar .nav-link,
+.navbar .nav-custom-link {
+  color: #ffffff !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-custom-link:hover {
+  color: #f5e9da !important;
+}
+/* Badge "Quản lý Shop" - làm rõ trên nền nâu thay vì nền trắng như thiết kế gốc */
+.navbar .text-admin-badge {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Chữ "Chào, tên khách" - đổi sang trắng cho rõ trên nền nâu */
+.navbar .user-greeting-link {
+  color: #ffffff !important;
 }

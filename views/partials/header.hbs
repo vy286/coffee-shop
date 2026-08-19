@@ -1,8 +1,14 @@
-<nav class="navbar navbar-expand-lg style-header shadow-sm bg-white sticky-top py-2">
+<nav
+  class="navbar navbar-expand-lg style-header shadow-sm bg-white sticky-top py-2"
+>
   <div class="container">
-    <!-- LOGO -->
     <a class="navbar-brand py-0" href="/">
-      <img src="/img/logo1.png" alt="VTM Coffee Shop" height="48" style="object-fit: contain;" />
+      <img
+        src="/img/logo1.png"
+        alt="VTM Coffee Shop"
+        height="48"
+        style="object-fit: contain;"
+      />
     </a>
 
     <button
@@ -15,7 +21,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- MENU BÊN TRÁI -->
       <ul class="navbar-nav mr-auto align-items-lg-center">
         <li class="nav-item">
           <a class="nav-link nav-custom-link" href="/">Trang chủ</a>
@@ -31,7 +36,6 @@
         </li>
 
         {{#if user.isAdmin}}
-          <!-- MENU DÀNH RIÊNG CHO ADMIN -->
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle font-weight-bold text-admin-badge px-3 py-1 rounded-pill"
@@ -43,16 +47,15 @@
               Quản lý Shop
             </a>
             <div class="dropdown-menu border-0 shadow-lg rounded-lg">
-              <a class="dropdown-item py-2" href="/products/create">Thêm sản phẩm mới</a>
+              <a class="dropdown-item py-2" href="/products/create">Thêm sản
+                phẩm mới</a>
               <a class="dropdown-item py-2" href="/orders">Quản lý đơn hàng</a>
             </div>
           </li>
         {{/if}}
       </ul>
 
-      <!-- MENU BÊN PHẢI (GIỎ HÀNG & TÀI KHOẢN) -->
       <ul class="navbar-nav ml-auto align-items-lg-center">
-        <!-- NÚT GIỎ HÀNG -->
         <li class="nav-item mr-lg-3 mb-2 mb-lg-0">
           <a
             class="btn btn-cart-custom rounded-pill px-3 py-2 d-inline-flex align-items-center"
@@ -64,18 +67,20 @@
         </li>
 
         {{#if user}}
-          <!-- KHI ĐÃ ĐĂNG NHẬP -->
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle text-dark font-weight-semibold"
+              class="nav-link dropdown-toggle user-greeting-link font-weight-semibold"
               href="#"
               id="userDropdown"
               role="button"
               data-toggle="dropdown"
             >
-              Chào, <span style="color: #6f4e37;">{{user.name}}</span>
+              Chào,
+              <span style="color: #f5e9da;">{{user.name}}</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right border-0 shadow-lg rounded-lg">
+            <div
+              class="dropdown-menu dropdown-menu-right border-0 shadow-lg rounded-lg"
+            >
               {{#unless user.isAdmin}}
                 <a class="dropdown-item py-2" href="/orders">Lịch sử đơn hàng</a>
                 <div class="dropdown-divider"></div>
@@ -84,7 +89,6 @@
             </div>
           </li>
         {{else}}
-          <!-- KHI CHƯA ĐĂNG NHẬP -->
           <li class="nav-item">
             <a
               class="btn btn-login-custom rounded-pill px-4 py-2 font-weight-bold"

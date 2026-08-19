@@ -135,23 +135,42 @@
               </div>
             {{else}}
             <!-- USER -->
-            <div class="d-flex align-items-center mt-3">
+<div class="d-flex align-items-center mt-3">
 
-              <!-- Thêm vào giỏ -->
-              <form
-                action="/cart/add/{{this._id}}"
-                method="POST"
-                class="mr-2"
-              >
-                <button
-                  type="submit"
-                  class="btn btn-cart"
-                  title="Thêm vào giỏ hàng"
-                >
-                  <ion-icon name="cart-outline"></ion-icon>
-                </button>
-              </form>
-            </div>
+  <!-- Thêm vào giỏ -->
+  <form 
+    action="/cart/add/{{this._id}}" 
+    method="POST" 
+    class="mr-2"
+  >
+    <button 
+      type="submit" 
+      class="btn btn-cart" 
+      title="Thêm vào giỏ hàng"
+    >
+      <ion-icon name="cart-outline"></ion-icon>
+    </button>
+  </form>
+
+  <!-- Mua ngay -->
+  <form 
+    action="/cart/add/{{this._id}}?buyNow=true" 
+    method="POST"
+  >
+    <button 
+      type="submit" 
+      class="btn text-white rounded-pill px-4"
+      style="
+        background-color: #6f4e37;
+        border: none;
+        font-weight: 600;
+      "
+    >
+      Mua ngay
+    </button>
+  </form>
+
+</div>
           {{/if}}
           </div>
         </div>
